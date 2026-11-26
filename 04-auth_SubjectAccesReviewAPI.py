@@ -1,7 +1,8 @@
 '''
-Validating a token proves identity, but it does not tell you whether that identity
-has permission to perform a specific action. Kubernetes provides the SubjectAccess‐
-Review API for authorization checks.
+Validating a token proves identity,
+it does not tell you whether that identity has permission to perform a specific action. 
+
+Kubernetes provides the SubjectAccessReview API for authorization checks.
 
 SubjectAccessReview asks the Kubernetes API server: 
 “Can this ServiceAccount perform this action on this resource?
@@ -35,6 +36,5 @@ async def check_agent_permission(
     return result.status.allowed
 
 '''
-This approach lets you leverage the Kubernetes RBAC  for
-application-level permissions without building a separate authorization system.
+This approach lets you leverage the Kubernetes RBAC for applications without building a separate authorization system.
 '''
