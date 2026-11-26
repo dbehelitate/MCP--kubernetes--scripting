@@ -4,24 +4,27 @@
 #Kubernetes provides the TokenReview API for exactly this purpose
 
 import httpx
-from pathlib import Path
+from kubernetes import client, config
+
+config.load_incluster_config()
+auth_v1 = client.AuthenticationV1Api()
 
 
-async def call_upstream_with_service_token(
-    endpoint: str,
-    payload: dict,
-    user_id: str | None = None
-) -> dict:
-    """Call upstream API with the MCP server's ServiceAccount token."""
-    sa_token = get_serviceaccount_token()
-    headers = {
-        "Authorization": f"Bearer {sa_token}",
-        "Content-Type": "application/json"
-    }
-    if user_id:
-        payload["_audit_user_id"] = user_id
+async def validate_agent_runtime_token(token: str) -> dict:
+    """Validate agent runtime token using Kubernetes TokenReview API."""
+    token_review = client.V1TokenReview(
+        spec=client.V1TokenReviewSpec(token=token)
+    )
+    result = auth_v1.create_token_review(token_review)
 
-    async with httpx.AsyncClient() as client:
-        response = await client.post(endpoint, json=payload, headers=headers)
-        response.raise_for_status()
-        return response.json()
+    if not result.status.authenticated:
+        raise ValueError("Token validation failed: not authenticated")
+
+    username = result.status.user.username
+    if not username.startswith("system:serviceaccount:agents:"):
+        raise ValueError(f"Token from unauthorized namespace: {username}")
+
+    return {
+        "username": username,
+        "uid": result.status.user.uid,
+        "groups": result.status.user.groups
