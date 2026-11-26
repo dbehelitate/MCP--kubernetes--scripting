@@ -1,9 +1,9 @@
 '''
-There are scenarios where you need to validate
-ServiceAccount tokens outside the cluster.
+To validate ServiceAccount tokens OUTSIDE the cluster:
 
-Kubernetes can expose ServiceAccount tokens as OIDC-compliant JWTs that any
-OIDC-aware service can validate. 
+Kubernetes can expose ServiceAccount tokens as OIDC-compliant JWTs
+that any OIDC-aware service can validate. 
+
 Most managed Kubernetes services enable by default an OIDC issuer URL
 '''
 
