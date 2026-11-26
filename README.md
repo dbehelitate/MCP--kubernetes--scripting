@@ -4,7 +4,7 @@
 Scripts with kubernetes client for RBAC,ServiceAccounts and MCP Security of accounts on clusters
 ---
 
-<img width="480" height="404" alt="server identity" src="https://github.com/user-attachments/assets/f6a3673f-b843-4478-9c71-74cdec61bd1a" /> <img width="344" height="404" alt="Screenshot_2026-11-26_03-58-34" src="https://github.com/user-attachments/assets/8618a342-5936-430c-b56e-df11a1e7b20c" />
+<img width="510" height="404" alt="server identity" src="https://github.com/user-attachments/assets/f6a3673f-b843-4478-9c71-74cdec61bd1a" /> <img width="314" height="404" alt="Screenshot_2026-11-26_03-58-34" src="https://github.com/user-attachments/assets/8618a342-5936-430c-b56e-df11a1e7b20c" />
 
 Docs from Kubernetes and Red Hat
 
