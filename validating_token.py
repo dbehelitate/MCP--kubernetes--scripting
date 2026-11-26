@@ -3,6 +3,11 @@
 #is true for any upstream API service that receives a request from an MCP server.
 #Kubernetes provides the TokenReview API for exactly this purpose
 
+#The TokenReview API takes a token as input and returns whether it is valid, along
+#with the identity it represents. 
+#This script shows an example of how an MCP server
+#can interact with the Kubernetes API to validate the token.
+
 import httpx
 from kubernetes import client, config
 
