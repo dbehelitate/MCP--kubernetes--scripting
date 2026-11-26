@@ -59,6 +59,11 @@ and the agent picks up from checkpoint.
 Inspect checkpoint directory to understand 
 what the agent was thinking at each step.
 
+
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
     +-----------+  load_latest_checkpoint()  +---------------------+
     | Pod start | -------------------------> | PVC mounted at /data |
     +-----------+                            |  /checkpoints        |
