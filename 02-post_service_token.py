@@ -1,8 +1,9 @@
 '''
-In server identity, the MCP server uses its own ServiceAccount token when calling
-upstream APIs. For agent identity, the agent sends in its ServiceAccount token, and
-after validation the MCP copies this agent token over into the Authorization: HTTP
-header when it makes its request to any upstream API.
+In server identity, the MCP server uses its own ServiceAccount token when calling upstream APIs. 
+Agent identity:
+-the agent sends in its ServiceAccount token, 
+-token gets validated 
+-MCP copies the agent token  intothe Authorization: HTTP header 
 '''
 
 import httpx
@@ -29,10 +30,11 @@ async def call_upstream_with_service_token(
         return response.json()
 
 '''
-The upstream API sees the MCP server’s identity and enforces permissions accord‐
-ingly. If you need to track which end user triggered the request for audit purposes,
+The upstream API sees the MCP server’s identity and enforces permissions accordingly.
+If you need to track which end user triggered the request for audit purposes,
 you can include that information in the request payload or in a custom header like
 X-User-ID.
-This approach is simple and has minimal overhead, but all agent runtimes using this
-MCP server get the same level of access.
+
+This approach is simple and has minimal overhead, 
+but all agent runtimes using MCP server get the same level of access.
 '''
