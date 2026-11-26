@@ -58,28 +58,4 @@ and the agent picks up from checkpoint.
 
 Inspect checkpoint directory to understand 
 what the agent was thinking at each step.
-
-
-
-----------------------------------------------------------------------------
-----------------------------------------------------------------------------
-
-    +-----------+  load_latest_checkpoint()  +---------------------+
-    | Pod start | -------------------------> | PVC mounted at /data |
-    +-----------+                            |  /checkpoints        |
-          |                                  |   step_001.json      |
-          v                                  |   step_002.json      |
-    +-----------+  save_checkpoint()         |   step_003.json      |
-    | Work step | -------------------------> |   ...                |
-    +-----------+                            +---------------------+
-
-    restartPolicy: OnFailure
-
-    +-----+     +--------+     +-------------+     +-----------+
-    | run | --> | save   | --> | FAIL / EVICT| --> | Kubernetes|
-    |     |     | step N |     |             |     | restarts  |
-    +-----+     +--------+     +-------------+     +-----------+
-       ^                                                 |
-       +------------ resume from step N
-
 '''
