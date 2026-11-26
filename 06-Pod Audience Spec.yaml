@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+spec:
+  serviceAccountName: my-sa #Attached ServiceAccount.
+  containers:
+    - name: app
+      image: ghcr.io/example/app:latest
+      volumeMounts:
+        - name: oidc
+          mountPath: /var/run/my-audience #Directory where to mount the service account tokens.
+          readOnly: true
+  volumes:
+    - name: oidc
+      projected:
+        sources:
+          - serviceAccountToken: #List of service account tokens to mount
+              path: token #Name of the file that holds the token.
+              audience: "https://my.service.example" #Audience added to the token JWT’s aud: claim.
+              expirationSeconds: 3600
