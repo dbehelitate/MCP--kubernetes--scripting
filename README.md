@@ -6,6 +6,7 @@ Docs from Kubernetes and Red Hat
 Service Accounts
 https://kubernetes.io/docs/concepts/security/service-accounts/
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-bound-service-account-tokens
 
 TokenReviewAPI 
 https://kubernetes.io/docs/reference/kubernetes-api/definitions/token-review-v1-authentication/
